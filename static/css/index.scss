@@ -11,13 +11,6 @@ button {
     font-family: "Josefin Sans", sans-serif;
 }
 
-body[js=off] {
-    #no-js {
-        display: flex;
-        z-index: 9999;
-    }
-}
-
 #no-js {
     width: 100%;
     height: 100%;
@@ -29,10 +22,41 @@ body[js=off] {
     text-align: center;
     font-size: 5rem;
     z-index: 9999;
-    display: none;
 }
 
-header {
+#loader {
+    width: 100%;
+    height: 100%;
+    background-color: #FFF;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    opacity: 1;
+    transition: all 0.3s;
+
+    &.hide {
+        z-index: -2;
+        opacity: 0;
+    }
+
+    > .anim {
+        width: 80px;
+        height: 80px;
+        background-image: url(../img/loader.gif);
+        background-size: contain;
+    }
+    > .text {
+        font-size: 3rem;
+        padding: 10px 0;
+    }
+}
+
+hbnb-header {
     width: 100%;
     border-bottom: 2px solid #C5C5FF;
     padding: 10px;
@@ -82,9 +106,10 @@ header {
     }
 }
 
-#menu {
+hbnb-search-form {
     width: 100%;
     background: linear-gradient(90deg,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.2) 20%, rgba(0,0,0,0.2) 80%, rgba(0,0,0,0) 100%);
+    display: block;
 
     .contents {
         margin: 0 auto;
@@ -92,6 +117,20 @@ header {
         display: flex;
         font-size: 1.6rem;
         padding: 10px;
+
+        // Shared styles between the destination and amenities menu sections
+        > .destination, .amenities {
+            > .title {
+                font-size: 2.2rem;
+                border-bottom: 1px solid #999;
+                margin-bottom: 10px;
+                padding-top: 5px;
+            }
+    
+            > .choice {
+                font-size: 1.6rem;
+            }
+        }
 
         > .destination {
             flex: 7;
@@ -133,46 +172,6 @@ header {
                 }
             }
         }
-    
-        // Shared styles between the destination and amenities menu sections
-        > .destination, .amenities {
-            > .title {
-                font-size: 2.2rem;
-                border-bottom: 1px solid #999;
-                margin-bottom: 10px;
-                padding-top: 5px;
-            }
-    
-            > .choice {
-                font-size: 1.6rem;
-    
-                > span {
-                    // prevent accidental highlighting of the text when choosing option
-                    user-select: none; 
-
-                    > label {
-                        padding: 8px 5px 5px 5px;
-                        border: 1px solid rgba(0,0,0,0);
-                        display: inline-block;
-
-                        &:hover {
-                            border: 1px solid rgba(0,0,0,0.3);
-                            background-color: #E5E5E5;
-                            border-radius: 5px;
-                            cursor: pointer;
-                        }
-                        &:active {
-                            border: 1px solid rgba(0,0,0,0.5);
-                            background-color: #C5C5C5;
-                        }
-
-                        > input[type=radio] {
-                            margin-right: 0px;
-                        }
-                    }                   
-                }
-            }
-        }
 
         > .search {
             width: 160px;
@@ -186,6 +185,30 @@ header {
                 font-size: 2rem;
                 cursor: pointer;
             }
+        }
+    }
+}
+
+hbnb-radio {
+    > label {
+        user-select: none; // prevent accidental highlighting of the text when choosing option
+        padding: 8px 5px 5px 5px;
+        border: 1px solid rgba(0,0,0,0);
+        display: inline-block;
+
+        &:hover {
+            border: 1px solid rgba(0,0,0,0.3);
+            background-color: #E5E5E5;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        &:active {
+            border: 1px solid rgba(0,0,0,0.5);
+            background-color: #C5C5C5;
+        }
+
+        > input[type=radio] {
+            margin-right: 0px;
         }
     }
 }
@@ -397,7 +420,7 @@ header {
     }
 }
 
-footer {
+hbnb-footer {
     width: 100%;
     height: 40px;
     position: fixed;
