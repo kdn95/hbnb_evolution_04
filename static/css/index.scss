@@ -213,6 +213,26 @@ hbnb-radio {
     }
 }
 
+hbnb-checkbox {
+    padding: 5px 0;
+
+    label {
+        padding: 5px 8px 2px 8px;
+        margin: 5px;
+        user-select: none;
+        cursor: pointer;
+        border-radius: 3px;
+
+        &:hover {
+            background-color: #D5D5D5;
+        }
+
+        > input {
+            margin: 0;
+        }
+    }
+}
+
 #amenities-submenu {
     width: 280px;
     background-color: #E5E5E5;
@@ -237,12 +257,11 @@ hbnb-radio {
         right: 0;
 
         // the arrows in the button point down when the submenu is open
-        ~ span #btn-specific-amenities-select .arrows {
+        // for this to work, the html for the submenu must be placed before the button html
+        ~ #btn-specific-amenities-select .arrows {
             transform: rotate(90deg);
         }
     }
-
-
 
     > .instruct {
         font-size: 1.6rem;
@@ -254,22 +273,6 @@ hbnb-radio {
     > .items {
         display: flex;
         flex-wrap: wrap;
-
-        > label {
-            padding: 5px 8px 2px 8px;
-            margin: 5px;
-            user-select: none;
-            cursor: pointer;
-            border-radius: 3px;
-
-            &:hover {
-                background-color: #D5D5D5;
-            }
-
-            > input {
-                margin: 0;
-            }
-        }
     }
 
     >.confirm {

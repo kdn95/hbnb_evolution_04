@@ -184,6 +184,23 @@ hbnb-radio > label > input[type=radio] {
   margin-right: 0px;
 }
 
+hbnb-checkbox {
+  padding: 5px 0;
+}
+hbnb-checkbox label {
+  padding: 5px 8px 2px 8px;
+  margin: 5px;
+  user-select: none;
+  cursor: pointer;
+  border-radius: 3px;
+}
+hbnb-checkbox label:hover {
+  background-color: #D5D5D5;
+}
+hbnb-checkbox label > input {
+  margin: 0;
+}
+
 #amenities-submenu {
   width: 280px;
   background-color: #E5E5E5;
@@ -205,7 +222,7 @@ hbnb-radio > label > input[type=radio] {
   z-index: 2;
   right: 0;
 }
-#amenities-submenu[state=show] ~ span #btn-specific-amenities-select .arrows {
+#amenities-submenu[state=show] ~ #btn-specific-amenities-select .arrows {
   transform: rotate(90deg);
 }
 #amenities-submenu > .instruct {
@@ -217,19 +234,6 @@ hbnb-radio > label > input[type=radio] {
 #amenities-submenu > .items {
   display: flex;
   flex-wrap: wrap;
-}
-#amenities-submenu > .items > label {
-  padding: 5px 8px 2px 8px;
-  margin: 5px;
-  user-select: none;
-  cursor: pointer;
-  border-radius: 3px;
-}
-#amenities-submenu > .items > label:hover {
-  background-color: #D5D5D5;
-}
-#amenities-submenu > .items > label > input {
-  margin: 0;
 }
 #amenities-submenu > .confirm {
   padding-top: 10px;

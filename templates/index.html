@@ -13,7 +13,11 @@
         // init a 'global' scope object
         let hbnb = {
             destinations: {},
-            amenities: {}
+            amenities: {},
+            searched: {
+                dest: "",
+                amen: ""
+            }
         }
 
         // Load the values from the backend into JS objects using Jinja syntax

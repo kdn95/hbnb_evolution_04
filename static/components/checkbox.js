@@ -1,4 +1,4 @@
-export class HbnbRadio extends HTMLElement {
+export class HbnbCheckbox extends HTMLElement {
     constructor() {
       super();
     }
@@ -12,11 +12,11 @@ export class HbnbRadio extends HTMLElement {
 
         this.innerHTML = `
             <label>
-                <input type="radio" name="` + name + `" value="` + value + `" ` + checked + ` />
+                <input type="checkbox" name="` + name + `" value="` + value + `" ` + checked + `>
                 <span>` + label + `</span>
             </label>
         `;
     }
 }
 
-window.customElements.define('hbnb-radio', HbnbRadio);
+window.customElements.define('hbnb-checkbox', HbnbCheckbox);
