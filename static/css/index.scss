@@ -146,16 +146,6 @@ hbnb-search-form {
                 >.text {
                     flex: 1;
                 }
-
-                >.selected {
-                    font-size: 1.2rem;
-                    align-content: center;
-                    display: inline-block;
-
-                    &[state=hide] {
-                        display: none;
-                    }
-                }
             }
 
             .choice {
@@ -183,6 +173,73 @@ hbnb-search-form {
                 height: 100%;
                 font-weight: 500;
                 font-size: 2rem;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+hbnb-amenities {
+    #amenities-counter {
+        font-size: 1.2rem;
+        position: absolute;
+        right: 0;
+        top: -26px;
+
+        &[state=hide] {
+            display: none;
+        }
+    }
+
+    #amenities-submenu {
+        width: 280px;
+        background-color: #E5E5E5;
+        padding: 10px;
+        border-radius: 3px;
+        top: 30px;
+        // right: 0;
+        box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
+        border: 1px solid #999;
+        position: absolute;
+        transition: all 0.3s;
+    
+        &[state=hide] {
+            opacity: 0;
+            z-index: -2;
+            right: -50px;
+        }
+    
+        &[state=show] {
+            opacity: 1;
+            z-index: 2;
+            right: 0;
+    
+            // the arrows in the button point down when the submenu is open
+            // for this to work, the html for the submenu must be placed before the button html
+            ~ #btn-specific-amenities-select .arrows {
+                transform: rotate(90deg);
+            }
+        }
+    
+        > .instruct {
+            font-size: 1.6rem;
+            border-bottom: 1px solid #999;
+            padding-bottom: 5px;
+            margin-bottom: 5px;
+        }
+    
+        > .items {
+            display: flex;
+            flex-wrap: wrap;
+        }
+    
+        >.confirm {
+            padding-top: 10px;
+            border-top: 1px solid #999;
+            text-align: center;
+    
+            button {
+                width: 120px;
                 cursor: pointer;
             }
         }
@@ -229,60 +286,6 @@ hbnb-checkbox {
 
         > input {
             margin: 0;
-        }
-    }
-}
-
-#amenities-submenu {
-    width: 280px;
-    background-color: #E5E5E5;
-    padding: 10px;
-    border-radius: 3px;
-    top: 30px;
-    // right: 0;
-    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
-    border: 1px solid #999;
-    position: absolute;
-    transition: all 0.3s;
-
-    &[state=hide] {
-        opacity: 0;
-        z-index: -2;
-        right: -50px;
-    }
-
-    &[state=show] {
-        opacity: 1;
-        z-index: 2;
-        right: 0;
-
-        // the arrows in the button point down when the submenu is open
-        // for this to work, the html for the submenu must be placed before the button html
-        ~ #btn-specific-amenities-select .arrows {
-            transform: rotate(90deg);
-        }
-    }
-
-    > .instruct {
-        font-size: 1.6rem;
-        border-bottom: 1px solid #999;
-        padding-bottom: 5px;
-        margin-bottom: 5px;
-    }
-
-    > .items {
-        display: flex;
-        flex-wrap: wrap;
-    }
-
-    >.confirm {
-        padding-top: 10px;
-        border-top: 1px solid #999;
-        text-align: center;
-
-        button {
-            width: 120px;
-            cursor: pointer;
         }
     }
 }

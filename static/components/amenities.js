@@ -1,7 +1,7 @@
 import { HbnbCheckbox } from "./checkbox.js"
 
 export class HbnbAmenities extends HTMLElement {
-    static menuVisibleState = "hide";
+    static checkboxes;
     static self;
 
     constructor() {
@@ -13,13 +13,17 @@ export class HbnbAmenities extends HTMLElement {
         // store a ref to the component
         HbnbAmenities.self = this;
 
-        let amenCheckboxesHtml = HbnbAmenities.#createAmenitiesMenuCheckboxes()
+        let amenCheckboxesHtml = HbnbAmenities.#createAmenitiesMenuCheckboxes();
 
         // Note that the submenu div is purposely placed before the button.
         // This is becuase the CSS I use to create the arrow animation
         // uses the 'sibling' selector and it will only work if the button is after the div.
         this.innerHTML = `
-            <div id="amenities-submenu" state="` + HbnbAmenities.menuVisibleState + `">
+            <span id="amenities-counter" state="hide">
+                <span class="amount">0</span>
+                <span>selected</span>
+            </span>
+            <div id="amenities-submenu" state="hide">
                 <div class="instruct">
                     Choose the ones that you want
                 </div>
@@ -36,16 +40,11 @@ export class HbnbAmenities extends HTMLElement {
             </button>
         `;
 
-        // Let's add back the click event listener for the button in this component
-        // https://stackoverflow.com/questions/72067223/javascript-web-components-add-function-to-the-shadow-dom
-        this.querySelector("#btn-specific-amenities-select").addEventListener('click', function() {
-            HbnbAmenities.setMenuVisilibity("show")
-        });
-
-        this.querySelector("#btn-specific-amenities-ok").addEventListener('click', function() {
-            HbnbAmenities.setMenuVisilibity("hide")
-        });
+        HbnbAmenities.#init();
     }
+
+
+    // --- Private + Public Methods ---
 
     static #createAmenitiesMenuCheckboxes() {
         let searchedAmen = [];
@@ -74,14 +73,58 @@ export class HbnbAmenities extends HTMLElement {
     }
 
     static setMenuVisilibity(state) {
-        let currState = HbnbAmenities.menuVisibleState;
-        if (state == "toggle") {
-            currState = (currState == "hide") ? "show" : "hide";
-        } else {
-            currState = state;
+        HbnbAmenities.self.querySelector("#amenities-submenu").setAttribute("state", state);
+    }
+
+    static setCounterVisibility(state) {
+        HbnbAmenities.self.querySelector("#amenities-counter").setAttribute("state", state);
+    }
+
+    static refreshCounterValue(checkboxes) {
+        let total = Object.keys(hbnb.amenities).length;
+        let curr = 0
+
+        for (let c of checkboxes) {
+            if (c.checked) {
+                curr++
+            }
         }
-        HbnbAmenities.menuVisibleState = currState;
-        HbnbAmenities.self.querySelector("#amenities-submenu").setAttribute("state", HbnbAmenities.menuVisibleState);
+
+        HbnbAmenities.self.querySelector("#amenities-counter .amount").innerHTML = curr + '/' + total;
+    }
+
+
+    // --- Init ---
+
+    static #init() {
+        // Let's add a click event listener for the button in this component
+        HbnbAmenities.self.querySelector("#btn-specific-amenities-select").addEventListener('click', function() {
+            HbnbAmenities.setMenuVisilibity("show")
+            
+            // Hmm... we have a small problem here...
+            // I want to auto-select the 'specific' option when the user clicks the button.
+            // How do we set the 'specific' radio to 'checked' from within this component?
+            // We need some way of reaching out and doing something to the parent component.
+            // Let's try emitting a custom event!
+            let menuButtonClicked = new CustomEvent("menu_button_clicked", {
+                bubbles: true,
+                cancelable: false,
+            });
+            HbnbAmenities.self.dispatchEvent(menuButtonClicked)
+        });
+
+        // Add change event listeners to the checkboxes + update counter value
+        let checkboxes = HbnbAmenities.self.querySelectorAll("#amenities-submenu input[type='checkbox']");
+        for (let c of checkboxes) {
+            c.addEventListener('click', function() {
+                HbnbAmenities.refreshCounterValue(checkboxes);
+            })
+        }
+        HbnbAmenities.refreshCounterValue(checkboxes);
+
+        HbnbAmenities.self.querySelector("#btn-specific-amenities-ok").addEventListener('click', function() {
+            HbnbAmenities.setMenuVisilibity("hide")
+        });
     }
 }
 

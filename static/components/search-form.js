@@ -8,6 +8,9 @@ export class HbnbSearchForm extends HTMLElement {
 
     // connect component
     connectedCallback() {
+        // store a ref to the component
+        HbnbSearchForm.self = this;
+
         // const shadow = this.attachShadow({ mode: "closed" });
 
         let destRadiosHtml = HbnbSearchForm.#createDestinationRadios()
@@ -35,15 +38,11 @@ export class HbnbSearchForm extends HTMLElement {
             </div>
         `;
 
-        let amenRadios = this.querySelectorAll(".amenities >.choice input[type='radio']");
-        console.log(amenRadios)
-        for (let elem of amenRadios) {
-            elem.addEventListener("change", function(e) {
-                let state = (e.target.value == 'specific') ? "show" : "hide"
-                HbnbAmenities.setMenuVisilibity(state)
-            });
-        }
+        HbnbSearchForm.#init();
     }
+
+
+    // --- Private Methods ---
 
     static #createDestinationRadios() {
         let searchedDest = (hbnb.searched && hbnb.searched.dest) ? hbnb.searched.dest : "";
@@ -81,6 +80,30 @@ export class HbnbSearchForm extends HTMLElement {
         return amenRadiosHtml;
     }
 
+
+    // --- Init ---
+
+    static #init() {
+        let amenRadios = HbnbSearchForm.self.querySelectorAll(".amenities >.choice input[type='radio']");
+        for (let elem of amenRadios) {
+            elem.addEventListener("change", function(e) {
+                let state = (e.target.value == 'specific') ? "show" : "hide"
+                HbnbAmenities.setMenuVisilibity(state)
+                HbnbAmenities.setCounterVisibility(state)
+            });
+        }
+
+        // Let's keep an eye out for the custom event that will be sent from hbnb-amenities.
+        HbnbSearchForm.self.addEventListener("menu_button_clicked", function (e) {
+            if (!amenRadios[1].checked) {
+                amenRadios[1].click();
+            }
+            // In case you're wondering, yes the 'click' above will result in the 'change'
+            // event triggering again. But this is ok. I'm only setting the menu state
+            // to 'show' (even when it's already 'show') and not triggering any other events.
+        });
+    }
+
     // So you can see that things are very messy when passing attribute values into the components.
     // Things would get messier if we had to pass in 5 or 6 or 7 attributes!
     // What if there were a cleaner way to pass the data into the hbnb-radio components?
@@ -111,4 +134,5 @@ export class HbnbSearchForm extends HTMLElement {
     // }
 
 }
+
 window.customElements.define('hbnb-search-form', HbnbSearchForm);

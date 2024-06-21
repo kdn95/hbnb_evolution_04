@@ -132,14 +132,6 @@ hbnb-search-form .contents > .amenities .title {
 hbnb-search-form .contents > .amenities .title > .text {
   flex: 1;
 }
-hbnb-search-form .contents > .amenities .title > .selected {
-  font-size: 1.2rem;
-  align-content: center;
-  display: inline-block;
-}
-hbnb-search-form .contents > .amenities .title > .selected[state=hide] {
-  display: none;
-}
 hbnb-search-form .contents > .amenities .choice {
   position: relative;
 }
@@ -161,6 +153,59 @@ hbnb-search-form .contents > .search > button {
   height: 100%;
   font-weight: 500;
   font-size: 2rem;
+  cursor: pointer;
+}
+
+hbnb-amenities #amenities-counter {
+  font-size: 1.2rem;
+  position: absolute;
+  right: 0;
+  top: -26px;
+}
+hbnb-amenities #amenities-counter[state=hide] {
+  display: none;
+}
+hbnb-amenities #amenities-submenu {
+  width: 280px;
+  background-color: #E5E5E5;
+  padding: 10px;
+  border-radius: 3px;
+  top: 30px;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
+  border: 1px solid #999;
+  position: absolute;
+  transition: all 0.3s;
+}
+hbnb-amenities #amenities-submenu[state=hide] {
+  opacity: 0;
+  z-index: -2;
+  right: -50px;
+}
+hbnb-amenities #amenities-submenu[state=show] {
+  opacity: 1;
+  z-index: 2;
+  right: 0;
+}
+hbnb-amenities #amenities-submenu[state=show] ~ #btn-specific-amenities-select .arrows {
+  transform: rotate(90deg);
+}
+hbnb-amenities #amenities-submenu > .instruct {
+  font-size: 1.6rem;
+  border-bottom: 1px solid #999;
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+}
+hbnb-amenities #amenities-submenu > .items {
+  display: flex;
+  flex-wrap: wrap;
+}
+hbnb-amenities #amenities-submenu > .confirm {
+  padding-top: 10px;
+  border-top: 1px solid #999;
+  text-align: center;
+}
+hbnb-amenities #amenities-submenu > .confirm button {
+  width: 120px;
   cursor: pointer;
 }
 
@@ -199,50 +244,6 @@ hbnb-checkbox label:hover {
 }
 hbnb-checkbox label > input {
   margin: 0;
-}
-
-#amenities-submenu {
-  width: 280px;
-  background-color: #E5E5E5;
-  padding: 10px;
-  border-radius: 3px;
-  top: 30px;
-  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
-  border: 1px solid #999;
-  position: absolute;
-  transition: all 0.3s;
-}
-#amenities-submenu[state=hide] {
-  opacity: 0;
-  z-index: -2;
-  right: -50px;
-}
-#amenities-submenu[state=show] {
-  opacity: 1;
-  z-index: 2;
-  right: 0;
-}
-#amenities-submenu[state=show] ~ #btn-specific-amenities-select .arrows {
-  transform: rotate(90deg);
-}
-#amenities-submenu > .instruct {
-  font-size: 1.6rem;
-  border-bottom: 1px solid #999;
-  padding-bottom: 5px;
-  margin-bottom: 5px;
-}
-#amenities-submenu > .items {
-  display: flex;
-  flex-wrap: wrap;
-}
-#amenities-submenu > .confirm {
-  padding-top: 10px;
-  border-top: 1px solid #999;
-  text-align: center;
-}
-#amenities-submenu > .confirm button {
-  width: 120px;
-  cursor: pointer;
 }
 
 #results {
