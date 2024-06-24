@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+import time
 from flask import Flask, render_template, request, abort, jsonify
 from api.v1 import api_routes
 from models.country import Country
@@ -25,33 +26,27 @@ def results():
     """ Results page after form post """
 
     # Evaluate what was submitted from the frontend and return the appropriate results
-    if request.form is None:
+    if request.data is None:
         abort(400, "No form data submitted")
 
-    formdata = request.form
-    # print(formdata)
+    submit_data = request.get_json()
 
-    searched_destination = formdata.get('destination-radio-group')
-    searched_amenities = formdata.get('amenities-radio-group')
+    searched_destination = submit_data.get('destination')
+    searched_amenities = submit_data.get('amenities')
+    amenities_checkboxes = submit_data.get('amenities_checkboxes')
 
-    # NOTE: Python flask has a weird way of handling the checkboxes values grouped in an array
-    if searched_amenities != "":
-        searched_amenities = formdata.getlist('amenities-specific-group[]')
+    if searched_amenities != "" and len(amenities_checkboxes) > 0:
+        searched_amenities = amenities_checkboxes
 
-    # Load the data we need before passing it to the template
-    countries = Country.all(True)
-    amenities = Amenity.all(True)
     country_city_places = Country.places(searched_destination, searched_amenities)
     # print(country_city_places)
 
-    # ??? What is this for? Why are we passing the stuff we selected back to the template???
-    selected = {
-        "destination": searched_destination,
-        "amenities": searched_amenities
-    }
-    # print(selected)
+    # artificial delay to let you see the loader in the frontend
+    time.sleep(0.5)
 
-    return render_template('index.html', countries=countries, amenities=amenities, places=country_city_places, selected=selected)
+    return jsonify({
+        "data": country_city_places
+    })
 
 @app.route('/status')
 def status():

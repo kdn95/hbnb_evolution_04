@@ -1,5 +1,6 @@
 import { HbnbRadio } from "./radio.js"
 import { HbnbAmenities } from "./amenities.js"
+import { HbnbSearchResults } from "./search-results.js"
 
 export class HbnbSearchForm extends HTMLElement {
     static self;
@@ -82,12 +83,50 @@ export class HbnbSearchForm extends HTMLElement {
         return amenRadiosHtml;
     }
 
-    static #submit() {
-        // assemble the data from the selections in the form
-        // console.log(hbnb.form.request.amenities);
+    // Example POST method implementation:
+    static async #postData(url = "", data = {}) {
+        return await fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        });
+    }
 
+    static async #submit() {
+        // Show the loader
+        document.getElementById("loader").setAttribute('class', 'show');
+
+        // the data we need to submit should already all be gathered in hbnb.form.request
         let submitData = hbnb.form.request;
-        console.log(submitData)
+        // console.log(submitData)
+
+        // Wrap the Fetch API in a Promise...
+        const myPromise = new Promise((resolve, reject) => {
+            try {
+                const response = HbnbSearchForm.#postData("/", submitData);
+                response.then((result) => {
+                    resolve(result.json());
+                })
+            } catch(error) {
+                console.error("Error:", error);
+                reject('something happened');
+            }
+        });
+
+        myPromise.then((result) => {
+            // Save the results into the global object
+            hbnb.form.response = result.data;
+            // Call the function for the results component to render the results
+            HbnbSearchResults.renderResults();
+        }).catch((e) => {
+            // console.error(e)
+            console.error('Something happened...');
+        }).finally(() => {
+            // Hide the loader
+            document.getElementById("loader").setAttribute('class', 'hide');
+        })
     }
 
     // --- Init ---
