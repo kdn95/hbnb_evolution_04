@@ -290,11 +290,11 @@ hbnb-checkbox {
     }
 }
 
-#results {
+hbnb-search-results {
     width: 100%;
-    min-height: 100%;
     font-size: 1.8rem;
     padding-bottom: 50px;
+    display: block;
 
     ul, li {
         margin: 0;
