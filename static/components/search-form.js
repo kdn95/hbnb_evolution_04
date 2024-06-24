@@ -2,6 +2,8 @@ import { HbnbRadio } from "./radio.js"
 import { HbnbAmenities } from "./amenities.js"
 
 export class HbnbSearchForm extends HTMLElement {
+    static self;
+
     constructor() {
       super();
     }
@@ -80,21 +82,37 @@ export class HbnbSearchForm extends HTMLElement {
         return amenRadiosHtml;
     }
 
+    static #submit() {
+        // assemble the data from the selections in the form
+        // console.log(hbnb.form.request.amenities);
+
+        let submitData = hbnb.form.request;
+        console.log(submitData)
+    }
 
     // --- Init ---
 
     static #init() {
-        let amenRadios = HbnbSearchForm.self.querySelectorAll(".amenities >.choice input[type='radio']");
-        for (let elem of amenRadios) {
+        let destRadios = HbnbSearchForm.self.querySelectorAll(".destination >.choice input[type='radio']");
+        for (let elem of destRadios) {
             elem.addEventListener("change", function(e) {
-                let state = (e.target.value == 'specific') ? "show" : "hide"
-                HbnbAmenities.setMenuVisilibity(state)
-                HbnbAmenities.setCounterVisibility(state)
+                hbnb.form.request.destination = e.target.value;
             });
         }
 
-        // Let's keep an eye out for the custom event that will be sent from hbnb-amenities.
-        HbnbSearchForm.self.addEventListener("menu_button_clicked", function (e) {
+        let amenRadios = HbnbSearchForm.self.querySelectorAll(".amenities >.choice input[type='radio']");
+        for (let elem of amenRadios) {
+            elem.addEventListener("change", function(e) {
+                hbnb.form.request.amenities = e.target.value;
+
+                let state = (e.target.value == 'specific') ? "show" : "hide"
+                HbnbAmenities.setMenuVisibility(state);
+                HbnbAmenities.setCounterVisibility(state);
+            });
+        }
+
+        // Let's keep an eye out for the custom events that will be sent from hbnb-amenities.
+        HbnbSearchForm.self.addEventListener("amenities_menu_button_clicked", function (e) {
             if (!amenRadios[1].checked) {
                 amenRadios[1].click();
             }
@@ -102,6 +120,12 @@ export class HbnbSearchForm extends HTMLElement {
             // event triggering again. But this is ok. I'm only setting the menu state
             // to 'show' (even when it's already 'show') and not triggering any other events.
         });
+
+        // Set up the Search button
+        let formSubmitButton = HbnbSearchForm.self.querySelector("#btn-menu-search");
+        formSubmitButton.addEventListener("click", function() {
+            HbnbSearchForm.#submit();
+        })
     }
 
     // So you can see that things are very messy when passing attribute values into the components.

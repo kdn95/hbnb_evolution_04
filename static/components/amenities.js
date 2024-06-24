@@ -1,7 +1,6 @@
 import { HbnbCheckbox } from "./checkbox.js"
 
 export class HbnbAmenities extends HTMLElement {
-    static checkboxes;
     static self;
 
     constructor() {
@@ -40,7 +39,7 @@ export class HbnbAmenities extends HTMLElement {
             </button>
         `;
 
-        HbnbAmenities.#init();
+        HbnbAmenities.#init(this);
     }
 
 
@@ -72,7 +71,7 @@ export class HbnbAmenities extends HTMLElement {
         return amenCheckboxesHtml;
     }
 
-    static setMenuVisilibity(state) {
+    static setMenuVisibility(state) {
         HbnbAmenities.self.querySelector("#amenities-submenu").setAttribute("state", state);
     }
 
@@ -80,16 +79,26 @@ export class HbnbAmenities extends HTMLElement {
         HbnbAmenities.self.querySelector("#amenities-counter").setAttribute("state", state);
     }
 
-    static refreshCounterValue(checkboxes) {
+    static emitSelectionAndUpdateCounter(checkboxes) {
         let total = Object.keys(hbnb.amenities).length;
-        let curr = 0
+        let curr = 0;
+        let selected = [];
 
         for (let c of checkboxes) {
             if (c.checked) {
+                selected.push(c.value)
                 curr++
             }
         }
 
+        // Store the data in the the global object
+        hbnb.form.request.amenities_checkboxes = selected;
+
+        // I initially tried emitting the data back using a custom event but it didn't work lol.
+        // The searchForm component does not exist at this point yet as it is created after Amenities
+        // so there is nothing to catch the emitted event haha.
+
+        // Update the html text of the counter
         HbnbAmenities.self.querySelector("#amenities-counter .amount").innerHTML = curr + '/' + total;
     }
 
@@ -99,31 +108,31 @@ export class HbnbAmenities extends HTMLElement {
     static #init() {
         // Let's add a click event listener for the button in this component
         HbnbAmenities.self.querySelector("#btn-specific-amenities-select").addEventListener('click', function() {
-            HbnbAmenities.setMenuVisilibity("show")
+            HbnbAmenities.setMenuVisibility("show");
             
             // Hmm... we have a small problem here...
             // I want to auto-select the 'specific' option when the user clicks the button.
             // How do we set the 'specific' radio to 'checked' from within this component?
             // We need some way of reaching out and doing something to the parent component.
             // Let's try emitting a custom event!
-            let menuButtonClicked = new CustomEvent("menu_button_clicked", {
+            let menuButtonClicked = new CustomEvent("amenities_menu_button_clicked", {
                 bubbles: true,
                 cancelable: false,
             });
-            HbnbAmenities.self.dispatchEvent(menuButtonClicked)
+            HbnbAmenities.self.dispatchEvent(menuButtonClicked);
         });
 
         // Add change event listeners to the checkboxes + update counter value
         let checkboxes = HbnbAmenities.self.querySelectorAll("#amenities-submenu input[type='checkbox']");
         for (let c of checkboxes) {
             c.addEventListener('click', function() {
-                HbnbAmenities.refreshCounterValue(checkboxes);
+                HbnbAmenities.emitSelectionAndUpdateCounter(checkboxes);
             })
         }
-        HbnbAmenities.refreshCounterValue(checkboxes);
+        HbnbAmenities.emitSelectionAndUpdateCounter(checkboxes);
 
         HbnbAmenities.self.querySelector("#btn-specific-amenities-ok").addEventListener('click', function() {
-            HbnbAmenities.setMenuVisilibity("hide")
+            HbnbAmenities.setMenuVisibility("hide");
         });
     }
 }

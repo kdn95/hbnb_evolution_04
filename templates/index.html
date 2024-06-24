@@ -14,9 +14,13 @@
         let hbnb = {
             destinations: {},
             amenities: {},
-            searched: {
-                dest: "",
-                amen: ""
+            form: {
+                request: {
+                    destination: "", // empty string == 'All'
+                    amenities: "",
+                    amenities_checkboxes: []
+                },
+                response: {}
             }
         }
 
