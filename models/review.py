@@ -20,10 +20,10 @@ class Review(Base):
     id = Column(String(60), nullable=False, primary_key=True)
     created_at = Column(DateTime, nullable=False, default=datetime.now())
     updated_at = Column(DateTime, nullable=False, default=datetime.now())
-    __place_id = Column(String(60), ForeignKey('places.id'), nullable=False)
-    __user_id = Column(String(60), ForeignKey('users.id'), nullable=False)
-    __rating = Column(Integer, nullable=False, default=0)
-    __comment = Column(String(1024), nullable=False)
+    __place_id = Column("place_id", String(60), ForeignKey('places.id'), nullable=False)
+    __user_id = Column("user_id", String(60), ForeignKey('users.id'), nullable=False)
+    __rating = Column("rating", Integer, nullable=False, default=0)
+    __comment = Column("comment", String(1024), nullable=False)
     place_r = relationship("Place", back_populates="reviews_r")
     user_r = relationship("User", back_populates="reviews_r")
 
@@ -85,7 +85,7 @@ class Review(Base):
 
     # --- Static methods ---
     @staticmethod
-    def all():
+    def all(return_raw_result = False):
         """ Class method that returns all reviews data"""
         output = []
 
@@ -94,6 +94,9 @@ class Review(Base):
         except IndexError as exc:
             print("Error: ", exc)
             return "Unable to load reviews!"
+
+        if return_raw_result:
+            return result
 
         for row in result:
             output.append({

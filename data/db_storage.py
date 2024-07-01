@@ -166,12 +166,15 @@ class DBStorage():
 
         return len(rows) == len(ids_list)
 
-    def raw_sql(self, query_txt):
+    def raw_sql(self, query_txt, commit = False):
         """ The absolutely worst possible way to access the database using an ORM """
         # Note that I'm doing things the wrong way by using raw SQL.
         # Ideally I should be using parametric queries but I couldn't get them to work lol.
         sql = text(query_txt)
         result = self.__session.execute(sql)
+
+        if commit == True:
+            self.__session.commit()
 
         return result
         

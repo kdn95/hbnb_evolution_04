@@ -1,7 +1,6 @@
 html, body {
-    height: 100%;
     margin: 0;
-    padding: 0;
+    padding: 0 0 30px 0;
     font-family: "Josefin Sans", sans-serif;
     font-size: 10px;
     background-color: #FFF;
@@ -56,7 +55,7 @@ button {
     }
 }
 
-hbnb-header {
+hbnb-header, hbnb-admin-header {
     width: 100%;
     border-bottom: 2px solid #C5C5FF;
     padding: 10px;
@@ -431,9 +430,244 @@ hbnb-footer {
     height: 40px;
     position: fixed;
     bottom: 0;
+    left: 0;
     text-align: center;
     border-top: 1px solid #CCC;
     background-color: #FFF;
     padding: 10px;
     box-sizing: border-box;
+}
+
+.admin-data {
+    min-height: 250px;
+    padding: 5px;
+    margin: 5px;
+    display: inline-block;
+    background-color: #F5F5F5;
+    overflow: hidden;
+
+    &.places-amenities {
+        .header span, .row span{
+            &:nth-child(1) {
+                width: 200px;
+            }
+            
+            &:nth-child(2) {
+                width: 120px;
+            }
+        }
+
+        form {
+            span {
+                &:nth-child(1) {
+                    flex: 1;
+                }
+                &:nth-child(2) {
+                    flex: 1;
+                }
+            }
+
+            select {
+                width: 100%;
+                padding: 5px;
+            }
+        }
+    }
+
+    &.amenities span{
+        &:nth-child(1) {
+            width: 100px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow-x: clip;
+        }
+        
+        &:nth-child(2) {
+            width: 100px;
+        }
+    }
+
+    &.cities span{
+        &:nth-child(1) {
+            width: 100px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow-x: clip;
+        }
+
+        &:nth-child(2) {
+            width: 120px;
+        }
+    }
+
+    &.countries {
+        .header span, .row span{
+            &:nth-child(1) {
+                width: 100px;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow-x: clip;
+            }
+
+            &:nth-child(2) {
+                width: 120px;
+            }
+            &:nth-child(3) {
+                width: 60px;
+            }
+        }
+
+        form span {
+            &:nth-child(1) {
+                flex: 2;
+            }
+            &:nth-child(2) {
+                flex: 1;
+            }
+        }
+    }
+
+    &.places span{
+        &:nth-child(1) {
+            width: 100px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow-x: clip;
+        }
+
+        &:nth-child(2) {
+            width: 150px;
+        }
+        &:nth-child(3) {
+            width: 220px;
+        }
+        &:nth-child(4) {
+            width: 330px;
+        }
+        &:nth-child(5) {
+            width: 50px;
+        }
+        &:nth-child(6), &:nth-child(7) {
+            width: 80px;
+        }
+        &:nth-child(8) {
+            width: 50px;
+        }
+        &:nth-child(9), &:nth-child(10) {
+            width: 70px;
+        }
+    }
+
+    &.reviews span{
+        &:nth-child(1) {
+            width: 100px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow-x: clip;
+        }
+
+        &:nth-child(2) {
+            width: 100px;
+        }
+        &:nth-child(3) {
+            width: 120px;
+        }
+    }
+
+    &.users span{
+        &:nth-child(1) {
+            width: 100px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow-x: clip;
+        }
+
+        &:nth-child(2) {
+            width: 100px;
+        }
+        &:nth-child(3) {
+            width: 100px;
+        }
+        &:nth-child(4) {
+            width: 250px;
+        }
+        &:nth-child(5) {
+            width: 100px;
+        }
+    }
+
+    > .title {
+        font-size: 2.6rem;
+        padding: 5px;
+        margin-bottom: 10px;
+        background-color: #E5E5E5;
+    }
+
+    > .header {
+        font-size: 0;     // whitespaces go away
+        border-bottom: 2px solid #CCC;
+        font-weight: bold;
+
+        > span {
+            display: inline-block;
+        }
+    }
+
+    > .rows {
+        height: 178px;
+        overflow-y: scroll;
+
+        > .row {
+            font-size: 0;     // whitespaces go away
+            display: flex;
+            
+            &:nth-child(2n+2) {
+                background-color: #D5D5D5;
+            }
+        }
+    }
+
+    > .header > span, > .rows > .row > span {
+        padding: 5px;
+        font-size: 1.4rem;
+        align-content: center;
+
+        &:not(:nth-child(1)) {
+            border-left: 1px solid #CCC;
+        }
+    }
+
+    > form {
+        min-height: 95px;
+        border-top: 2px solid #CCC;
+        background-color: #E5E5E5;
+        padding: 10px 5px 5px 5px;
+
+        > .title {
+            font-size: 1.6rem;
+        }
+
+        > .fields {
+            display: flex;
+
+            > span {
+                padding: 5px 10px 5px 0;
+            }
+
+            input[type=text] {
+                padding: 5px;
+                width: calc(100% - 10px);
+            }
+        }
+
+        > .submit {
+            text-align: right;
+            padding-right: 10px;
+
+            > button {
+                padding: 5px 20px;
+                font-size: 1.6rem;
+            }
+        }
+    }
 }

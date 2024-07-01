@@ -190,7 +190,7 @@ class Place(Base):
 
     # --- Static methods ---
     @staticmethod
-    def all():
+    def all(return_raw_result = False):
         """ Class method that returns all places data"""
         output = []
 
@@ -199,6 +199,9 @@ class Place(Base):
         except IndexError as exc:
             print("Error: ", exc)
             return "Unable to load places!"
+
+        if return_raw_result:
+            return result
 
         for row in result:
             # Note that we are using the amenities relationship to get the data we need
@@ -380,6 +383,29 @@ class Place(Base):
 
         return jsonify(output)
 
+    @staticmethod
+    def amenities_data():
+        """ grab the data from the many to many table """
+        query_txt = """
+            SELECT p.id AS place_id, p.name AS place_name, a.name AS amenity_name, a.id AS amenity_id
+            FROM place_amenity pa 
+            LEFT JOIN places p ON p.id = pa.place_id 
+            LEFT JOIN amenities a ON a.id = pa.amenity_id 
+            ORDER BY p.name ASC, a.name ASC
+        """
+
+        output = []
+        result = storage.raw_sql(query_txt)
+        for row in result:
+            output.append({
+                "place_id": row.place_id,
+                "place_name": row.place_name,
+                "amenity_name": row.amenity_name,
+                "amenity_id": row.amenity_id
+            })
+
+        return output
+
 
 class Amenity(Base):
     """Representation of amenity """
@@ -479,7 +505,7 @@ class Amenity(Base):
             abort(400, "Missing name")
 
         exists = storage.get('Amenity', '_Amenity__name', data["name"])
-        if exists is not None:
+        if len(exists) > 0:
             abort(400, "Specified amenity already exists")
 
         try:
@@ -528,3 +554,40 @@ class Amenity(Base):
         }
 
         return jsonify(output)
+
+    @staticmethod
+    def create_place_relationship(data):
+        """ This will create a many-to-many record to link a place with an amenity """
+
+        # 1. check if the pairing exists or not
+        query_txt = """
+            SELECT * 
+            FROM place_amenity pa 
+            WHERE place_id = '""" + data['place'] + """' AND amenity_id = '""" + data['amenity'] + """'
+        """
+
+        result = storage.raw_sql(query_txt)
+
+        count = 0
+        for row in result:
+            count += 1
+
+        if count > 0:
+            abort(400, "Specified pairing already exists")
+
+        # 1. pairing does not exist, create the record
+        insert_query_txt = """
+            INSERT INTO place_amenity
+            (place_id, amenity_id)
+            VALUES('""" + data['place'] + """', '""" + data['amenity'] + """');
+        """
+
+        try:
+            # If I don't do a session commit, the changes won't get written to the database
+            # The changes will only exist in memory as long as the database session is active
+            insert_result = storage.raw_sql(insert_query_txt, True)
+        except IndexError as exc:
+            print("Error: ", exc)
+            return "Unable to add place-amenity pairing record!"
+
+        return 'OK'

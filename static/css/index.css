@@ -1,7 +1,6 @@
 html, body {
-  height: 100%;
   margin: 0;
-  padding: 0;
+  padding: 0 0 30px 0;
   font-family: "Josefin Sans", sans-serif;
   font-size: 10px;
   background-color: #FFF;
@@ -54,26 +53,26 @@ button {
   padding: 10px 0;
 }
 
-hbnb-header {
+hbnb-header, hbnb-admin-header {
   width: 100%;
   border-bottom: 2px solid #C5C5FF;
   padding: 10px;
   display: flex;
   box-sizing: border-box;
 }
-hbnb-header .content {
+hbnb-header .content, hbnb-admin-header .content {
   flex: 1;
 }
-hbnb-header .content .title {
+hbnb-header .content .title, hbnb-admin-header .content .title {
   font-size: 36px;
   font-weight: 700;
   font-style: italic;
 }
-hbnb-header .content .subtitle {
+hbnb-header .content .subtitle, hbnb-admin-header .content .subtitle {
   font-size: 24px;
   padding-left: 5px;
 }
-hbnb-header .status {
+hbnb-header .status, hbnb-admin-header .status {
   background-color: #F5F5F5;
   border-radius: 5px;
   padding: 5px;
@@ -81,20 +80,20 @@ hbnb-header .status {
   display: flex;
   align-items: center;
 }
-hbnb-header .status > .txt {
+hbnb-header .status > .txt, hbnb-admin-header .status > .txt {
   padding: 0 5px;
   font-size: 1.4rem;
 }
-hbnb-header .status > .bubble {
+hbnb-header .status > .bubble, hbnb-admin-header .status > .bubble {
   width: 30px;
   height: 30px;
   border-radius: 20px;
   display: block;
 }
-hbnb-header .status > .bubble.ok {
+hbnb-header .status > .bubble.ok, hbnb-admin-header .status > .bubble.ok {
   background-color: green;
 }
-hbnb-header .status > .bubble.down {
+hbnb-header .status > .bubble.down, hbnb-admin-header .status > .bubble.down {
   background-color: red;
 }
 
@@ -361,11 +360,190 @@ hbnb-footer {
   height: 40px;
   position: fixed;
   bottom: 0;
+  left: 0;
   text-align: center;
   border-top: 1px solid #CCC;
   background-color: #FFF;
   padding: 10px;
   box-sizing: border-box;
+}
+
+.admin-data {
+  min-height: 250px;
+  padding: 5px;
+  margin: 5px;
+  display: inline-block;
+  background-color: #F5F5F5;
+  overflow: hidden;
+}
+.admin-data.places-amenities .header span:nth-child(1), .admin-data.places-amenities .row span:nth-child(1) {
+  width: 200px;
+}
+.admin-data.places-amenities .header span:nth-child(2), .admin-data.places-amenities .row span:nth-child(2) {
+  width: 120px;
+}
+.admin-data.places-amenities form span:nth-child(1) {
+  flex: 1;
+}
+.admin-data.places-amenities form span:nth-child(2) {
+  flex: 1;
+}
+.admin-data.places-amenities form select {
+  width: 100%;
+  padding: 5px;
+}
+.admin-data.amenities span:nth-child(1) {
+  width: 100px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow-x: clip;
+}
+.admin-data.amenities span:nth-child(2) {
+  width: 100px;
+}
+.admin-data.cities span:nth-child(1) {
+  width: 100px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow-x: clip;
+}
+.admin-data.cities span:nth-child(2) {
+  width: 120px;
+}
+.admin-data.countries .header span:nth-child(1), .admin-data.countries .row span:nth-child(1) {
+  width: 100px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow-x: clip;
+}
+.admin-data.countries .header span:nth-child(2), .admin-data.countries .row span:nth-child(2) {
+  width: 120px;
+}
+.admin-data.countries .header span:nth-child(3), .admin-data.countries .row span:nth-child(3) {
+  width: 60px;
+}
+.admin-data.countries form span:nth-child(1) {
+  flex: 2;
+}
+.admin-data.countries form span:nth-child(2) {
+  flex: 1;
+}
+.admin-data.places span:nth-child(1) {
+  width: 100px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow-x: clip;
+}
+.admin-data.places span:nth-child(2) {
+  width: 150px;
+}
+.admin-data.places span:nth-child(3) {
+  width: 220px;
+}
+.admin-data.places span:nth-child(4) {
+  width: 330px;
+}
+.admin-data.places span:nth-child(5) {
+  width: 50px;
+}
+.admin-data.places span:nth-child(6), .admin-data.places span:nth-child(7) {
+  width: 80px;
+}
+.admin-data.places span:nth-child(8) {
+  width: 50px;
+}
+.admin-data.places span:nth-child(9), .admin-data.places span:nth-child(10) {
+  width: 70px;
+}
+.admin-data.reviews span:nth-child(1) {
+  width: 100px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow-x: clip;
+}
+.admin-data.reviews span:nth-child(2) {
+  width: 100px;
+}
+.admin-data.reviews span:nth-child(3) {
+  width: 120px;
+}
+.admin-data.users span:nth-child(1) {
+  width: 100px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow-x: clip;
+}
+.admin-data.users span:nth-child(2) {
+  width: 100px;
+}
+.admin-data.users span:nth-child(3) {
+  width: 100px;
+}
+.admin-data.users span:nth-child(4) {
+  width: 250px;
+}
+.admin-data.users span:nth-child(5) {
+  width: 100px;
+}
+.admin-data > .title {
+  font-size: 2.6rem;
+  padding: 5px;
+  margin-bottom: 10px;
+  background-color: #E5E5E5;
+}
+.admin-data > .header {
+  font-size: 0;
+  border-bottom: 2px solid #CCC;
+  font-weight: bold;
+}
+.admin-data > .header > span {
+  display: inline-block;
+}
+.admin-data > .rows {
+  height: 178px;
+  overflow-y: scroll;
+}
+.admin-data > .rows > .row {
+  font-size: 0;
+  display: flex;
+}
+.admin-data > .rows > .row:nth-child(2n+2) {
+  background-color: #D5D5D5;
+}
+.admin-data > .header > span, .admin-data > .rows > .row > span {
+  padding: 5px;
+  font-size: 1.4rem;
+  align-content: center;
+}
+.admin-data > .header > span:not(:nth-child(1)), .admin-data > .rows > .row > span:not(:nth-child(1)) {
+  border-left: 1px solid #CCC;
+}
+.admin-data > form {
+  min-height: 95px;
+  border-top: 2px solid #CCC;
+  background-color: #E5E5E5;
+  padding: 10px 5px 5px 5px;
+}
+.admin-data > form > .title {
+  font-size: 1.6rem;
+}
+.admin-data > form > .fields {
+  display: flex;
+}
+.admin-data > form > .fields > span {
+  padding: 5px 10px 5px 0;
+}
+.admin-data > form > .fields input[type=text] {
+  padding: 5px;
+  width: calc(100% - 10px);
+}
+.admin-data > form > .submit {
+  text-align: right;
+  padding-right: 10px;
+}
+.admin-data > form > .submit > button {
+  padding: 5px 20px;
+  font-size: 1.6rem;
 }
 
 /*# sourceMappingURL=index.css.map */

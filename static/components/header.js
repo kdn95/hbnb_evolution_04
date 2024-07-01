@@ -11,8 +11,8 @@ export class HbnbHeader extends HTMLElement {
                 <div class="title">Welcome to the HBnB Listings site!</div>
                 <div class="subtitle">Find your perfect vacation getaway!</div>
             </div>
-            <div class="admin">
-                Admin link goes here
+            <div class="status">
+                <a href="/admin">Admin area</a>
             </div>
         `;
     }

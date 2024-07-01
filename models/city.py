@@ -65,7 +65,7 @@ class City(Base):
 
     # --- Static methods ---
     @staticmethod
-    def all():
+    def all(return_raw_result = False):
         """ Class method that returns all cities data"""
         output = []
 
@@ -74,6 +74,9 @@ class City(Base):
         except IndexError as exc:
             print("Error: ", exc)
             return "Unable to load cities!"
+
+        if return_raw_result:
+            return result
 
         for row in result:
             output.append({

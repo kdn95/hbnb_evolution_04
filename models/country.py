@@ -130,7 +130,7 @@ class Country(Base):
             abort(400, "Missing country code")
 
         exists = storage.get('Country', '_Country__code', data["code"])
-        if exists is not None:
+        if len(exists) > 0:
             return "New country's code is the same as that of an existing country!"
 
         try:
@@ -156,6 +156,35 @@ class Country(Base):
         }
 
         return jsonify(output)
+
+    @staticmethod
+    def create_from_form_submit(data):
+        """ accepts form submit data to create new country """
+
+        if 'name' not in data:
+            abort(400, "Missing name")
+        if 'code' not in data:
+            abort(400, "Missing country code")
+
+        exists = storage.get('Country', '_Country__code', data["code"])
+        if len(exists) > 0:
+            return "New country's code is the same as that of an existing country!"
+
+        try:
+            new_country = Country(
+                name=data["name"],
+                code=data["code"]
+            )
+        except ValueError as exc:
+            return repr(exc) + "\n"
+
+        try:
+            storage.add(new_country)
+        except IndexError as exc:
+            print("Error: ", exc)
+            return "Unable to add new Country!"
+
+        return 'OK'
 
     @staticmethod
     def update(country_code):
