@@ -74,6 +74,7 @@ export class HbnbSearchForm extends HTMLElement {
 
     static #createAmenitiesRadios() {
         // searchedAmen will either be an empty string or an array of stuff
+        // hbnb.searched & hbnb.searched.amen does not exist, hence automatically None
         let searchedAmen = (hbnb.searched && hbnb.searched.amen) ? hbnb.searched.amen : "";
         let amenGroupName = "amenities-radio-group";
         let amenRadiosHtml = ``;
@@ -81,26 +82,36 @@ export class HbnbSearchForm extends HTMLElement {
         // Only two radios - 'All' or 'Specific'
         let isAmenAllChecked = (searchedAmen == "" || searchedAmen.length == 0) ? "checked" : "";
         let isAmenSpecificChecked = (isAmenAllChecked == "") ? "checked" : "";
-
+        // amenRadiosHtml is equal to amenities-radio-group + no value being defaulted to be "All" as it is checked
         amenRadiosHtml += `<hbnb-radio name="` + amenGroupName + `" value="" label="All" ` + isAmenAllChecked + `></hbnb-radio>`;
+        // amenRadiosHtml is equal to amenities-radio-group + value is specific as the specificAmen is checked
         amenRadiosHtml += `<hbnb-radio name="` + amenGroupName + `" value="specific" label="Specific" ` + isAmenSpecificChecked + `></hbnb-radio>`;
 
         return amenRadiosHtml;
     }
 
     // Example POST method implementation:
+    // Send data to a server, such as submitting form data, sending user input, or communicating with an API
+    // async it will exe one process and do another without delay
+    // takes a string url and data object
     static async #postData(url = "", data = {}) {
+        // return waits for function exec. until fetch API is resolved below
+        // object includes key-value pair for method, headers with a value of an obj "content-Type"
         return await fetch(url, {
+            // HTTP method specified to send data to server
             method: "POST",
+            // header data is in JSON format (hence "application/json")
             headers: {
                 "Content-Type": "application/json",
             },
+            // data obj converted to JSON string and sent as request body
             body: JSON.stringify(data),
         });
     }
 
     static async #submit() {
         // Show the loader
+        // Loader element changes class to "show"/"indicate" that background process (i.e. data submission) is happening.
         document.getElementById("loader").setAttribute('class', 'show');
 
         // the data we need to submit should already all be gathered in hbnb.form.request
@@ -110,18 +121,25 @@ export class HbnbSearchForm extends HTMLElement {
         // Wrap the Fetch API in a Promise...
         const myPromise = new Promise((resolve, reject) => {
             try {
+                // calls the #postData method to send submitData to server.#postData expected to return a promise from the Fetch API.
                 const response = HbnbSearchForm.#postData("/", submitData);
+                // When response is received, then() extracts JSON data (i.e. result) and resolves promise
                 response.then((result) => {
+                    // result function is equal to resolve of JSON formatted of the result/response
                     resolve(result.json());
                 })
+                // if no response, catch() creates error 
             } catch(error) {
+                // print error "Error"
                 console.error("Error:", error);
+                // And pushes to reject state with statement "something happened"
                 reject('something happened');
             }
         });
-
+        // if myPromise is successfully resolved, receives result from promise and the data
         myPromise.then((result) => {
             // Save the results into the global object
+            // data from result is saved to global object hbnb.form.response
             hbnb.form.response = result.data;
             // Call the function for the results component to render the results
             HbnbSearchResults.renderResults();
