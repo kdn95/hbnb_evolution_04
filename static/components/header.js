@@ -1,3 +1,5 @@
+// HbnbHeader is a subclass of HTMLElement
+// This turns HbnbHeader into a web component
 export class HbnbHeader extends HTMLElement {
     constructor() {
       super();
