@@ -46,21 +46,26 @@ export class HbnbSearchForm extends HTMLElement {
 
 
     // --- Private Methods ---
-
+// declare private(#) static method
     static #createDestinationRadios() {
+        // check if hbnb.searched & .searched.dest are both not null/undefined, if true, set to .serached.dest else None
         let searchedDest = (hbnb.searched && hbnb.searched.dest) ? hbnb.searched.dest : "";
         let destGroupName = "destination-radio-group";
         let destRadiosHtml = ``;
 
         // First option - 'All'
+        // if searchedDest is None, make that 'checked' to a isDestChecked variable name
         let isDestChecked = (searchedDest == "") ? "checked" : "";
+        // destRadioHtml becomes the "all" radio button that includes dest-radio-group, the value being 'all' and the searchedDest being checked
         destRadiosHtml += `<hbnb-radio name="` + destGroupName + `" value="" label="All" ` + isDestChecked + `></hbnb-radio>`;
 
         // The other options
         for (let countryCode in hbnb.destinations) {
+            // if searchedDest is the same as countryCode, make it checked and assigned isDestChecked
             isDestChecked = (searchedDest == countryCode) ? "checked" : "";
+            // countryName assigned to hbnb.destinations[countryCode]
             let countryName = hbnb.destinations[countryCode];
-
+            // destRadioHtml becomes checked destination button where value is equal to countryCode, with countryName as label and confirmed to be checked
             destRadiosHtml += `<hbnb-radio name="` + destGroupName + `" value="` + countryCode + `" label="` + countryName + `" ` + isDestChecked + ` ></hbnb-radio>`;
         }
 
