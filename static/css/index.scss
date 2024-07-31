@@ -117,6 +117,13 @@ hbnb-search-form {
     background: linear-gradient(90deg,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.2) 20%, rgba(0,0,0,0.2) 80%, rgba(0,0,0,0) 100%);
     display: block;
 
+    .none {
+        width: 100%;
+        padding: 40px 0;
+        text-align: center;
+        color: #FBFBFB;
+    }
+
     .contents {
         margin: 0 auto;
         max-width: 1280px;
@@ -125,6 +132,7 @@ hbnb-search-form {
         text-align: center;
         position: relative;
         color: #FBFBFB;
+        
 
         // Shared styles between the destination and amenities menu sections
         > .destination, .amenities {
@@ -311,11 +319,6 @@ hbnb-search-results {
         list-style: none;
     }
 
-    > .none {
-        width: 100%;
-        padding: 40px 0;
-        text-align: center;
-    }
 
     > .listings {
         > .country_group {

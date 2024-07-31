@@ -10,11 +10,11 @@ export class HbnbSearchResults extends HTMLElement {
         // store a ref to the component
         HbnbSearchResults.self = this;
 
-        this.innerHTML = `
-            <div class="none">
-                <h1>Please run the Search above to find available properties!</h1>
-            </div>
-        `;
+    //    this.innerHTML = `
+    //        <div class="none">
+    //            <h1>Please run the Search above to find available properties!</h1>
+    //        </div>
+    //    `;
     }
 
     static renderResults() {

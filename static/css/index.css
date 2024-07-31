@@ -109,6 +109,12 @@ hbnb-search-form {
   background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.2) 20%, rgba(0, 0, 0, 0.2) 80%, rgba(0, 0, 0, 0) 100%);
   display: block;
 }
+hbnb-search-form .none {
+  width: 100%;
+  padding: 40px 0;
+  text-align: center;
+  color: #FBFBFB;
+}
 hbnb-search-form .contents {
   margin: 0 auto;
   max-width: 1280px;
@@ -263,11 +269,6 @@ hbnb-search-results ul, hbnb-search-results li {
   margin: 0;
   padding: 0;
   list-style: none;
-}
-hbnb-search-results > .none {
-  width: 100%;
-  padding: 40px 0;
-  text-align: center;
 }
 hbnb-search-results > .listings > .country_group {
   background-color: rgba(0, 0, 0, 0.1);

@@ -21,6 +21,9 @@ export class HbnbSearchForm extends HTMLElement {
 
         // --- HTML ---
         this.innerHTML = `
+            <div class="none">
+                <h1>Start searching!</h1>
+            </div>
             <div class="contents">
                 <div class="destination">
                     <div class="title">Destination</div>
