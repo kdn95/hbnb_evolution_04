@@ -50,9 +50,9 @@ body {
   opacity: 0;
 }
 #loader > .anim {
-  width: 80px;
-  height: 80px;
-  background-image: url(../img/loader.gif);
+  width: 499px;
+  height: 365px;
+  background-image: url(../img/bob.gif);
   background-size: contain;
 }
 #loader > .text {
@@ -114,6 +114,7 @@ hbnb-search-form .none {
   padding: 40px 0;
   text-align: center;
   color: #FBFBFB;
+  font-size: 17px;
 }
 hbnb-search-form .contents {
   margin: 0 auto;
