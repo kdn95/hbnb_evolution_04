@@ -67,19 +67,64 @@ hbnb-header, hbnb-admin-header {
   display: flex;
   box-sizing: border-box;
 }
-hbnb-header .content, hbnb-admin-header .content {
-  flex: 1;
+
+hbnb-header {
+  width: 100%;
+  border-bottom: 2px solid #C5C5FF;
+  padding: 10px;
+  display: flex;
+  box-sizing: border-box;
 }
-hbnb-header .content .title, hbnb-admin-header .content .title {
-  font-size: 36px;
-  font-weight: 700;
-  font-style: italic;
+hbnb-header .content .navbar-menu {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: relative;
+  top: -80px;
+  left: 60px;
+  color: #FBFBFB;
 }
-hbnb-header .content .subtitle, hbnb-admin-header .content .subtitle {
-  font-size: 24px;
-  padding-left: 5px;
+hbnb-header .content .navbar-menu .nav {
+  list-style-type: none;
+  display: flex;
+  padding: 0;
+  margin: 0;
+  font-family: inter;
+  font-size: 25px;
+  color: #FBFBFB;
 }
-hbnb-header .status, hbnb-admin-header .status {
+hbnb-header .content .navbar-menu .nav-item {
+  margin: 0 15px;
+  font-family: inter;
+  color: #FBFBFB;
+}
+hbnb-header .content .navbar-menu .nav-link {
+  text-decoration: none;
+  color: #FBFBFB;
+  padding: 5px 10px;
+  font-family: inter;
+  font-size: 25px;
+}
+hbnb-header .content .nav .nav-link:hover {
+  color: #808691;
+}
+hbnb-header .content .nav .nav-link::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0.2rem;
+}
+hbnb-header .content .nav .nav-item:hover .nav-link::before {
+  width: 100%;
+}
+hbnb-header ul.row {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+hbnb-header .status {
   background-color: #F5F5F5;
   border-radius: 5px;
   padding: 5px;
@@ -87,20 +132,20 @@ hbnb-header .status, hbnb-admin-header .status {
   display: flex;
   align-items: center;
 }
-hbnb-header .status > .txt, hbnb-admin-header .status > .txt {
+hbnb-header .status > .txt {
   padding: 0 5px;
   font-size: 1.4rem;
 }
-hbnb-header .status > .bubble, hbnb-admin-header .status > .bubble {
+hbnb-header .status > .bubble {
   width: 30px;
   height: 30px;
   border-radius: 20px;
   display: block;
 }
-hbnb-header .status > .bubble.ok, hbnb-admin-header .status > .bubble.ok {
+hbnb-header .status > .bubble.ok {
   background-color: green;
 }
-hbnb-header .status > .bubble.down, hbnb-admin-header .status > .bubble.down {
+hbnb-header .status > .bubble.down {
   background-color: red;
 }
 

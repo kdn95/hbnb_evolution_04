@@ -69,18 +69,84 @@ hbnb-header, hbnb-admin-header {
     display: flex;
     box-sizing: border-box;
 
-    .content {
-        flex: 1;
+}
 
-        .title {
-            font-size: 36px;
-            font-weight: 700;
-            font-style: italic;
+hbnb-header {
+    width: 100%;
+    border-bottom: 2px solid #C5C5FF;
+    padding: 10px;
+    display: flex;
+    box-sizing: border-box;
+
+    .content {
+        .navbar-menu {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            position: relative;
+            top: -80px;
+            left: 60px;
+            color: #FBFBFB;
+        
+            .nav {
+                list-style-type: none;
+                display: flex;
+                padding: 0;
+                margin: 0;
+                font-family: inter;
+                font-size: 25px;
+                color: #FBFBFB;
+            }
+            
+            .nav-item {
+                margin: 0 15px;
+                font-family: inter;
+                color: #FBFBFB;
+            }
+        
+            .nav-link {
+                text-decoration: none;
+                color: #FBFBFB;
+                padding: 5px 10px;
+                font-family: inter;
+                font-size: 25px;
+        
+        
+            }
         }
-        .subtitle {
-            font-size: 24px;
-            padding-left: 5px;
+        
+        .nav {
+            .nav-link {
+                &:hover {
+                    color: #808691;
+                }
+        
+                &::before {
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 0;
+                    height: 0.2rem;
+                }
+            }
+        
+            .nav-item {
+                &:hover {
+                    .nav-link {
+                        &::before {
+                            width: 100%
+                        }
+                    }
+                }
+            }
         }
+    }
+
+    ul.row {
+        margin: 0;
+        padding: 0;
+        list-style: none;
     }
 
     .status {

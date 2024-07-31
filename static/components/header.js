@@ -10,8 +10,23 @@ export class HbnbHeader extends HTMLElement {
         // const shadow = this.attachShadow({ mode: "closed" });
         this.innerHTML = `
             <div class="content">
-                <div class="title">Welcome to the HBnB Listings site!</div>
-                <div class="subtitle">Find your perfect vacation getaway!</div>
+                <div class="header-logo"></div>
+                <nav class="navbar-menu">
+                    <ul class="nav">
+                        <li class="nav-item">
+                             <a href="#" class="nav-link">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#services" class="nav-link">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#works" class="nav-link">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/admin">Admin area</a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
             <div class="status">
                 <a href="/admin">Admin area</a>
