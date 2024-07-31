@@ -28,6 +28,8 @@ export class HbnbSearchForm extends HTMLElement {
                         + destRadiosHtml +
                     `</div>
                 </div>
+            </div>
+            <div class="contents">
                 <div class="amenities">
                     <div class="title">Amenities</div>
                     <div class="choice">`
@@ -35,6 +37,8 @@ export class HbnbSearchForm extends HTMLElement {
                         `<hbnb-amenities></hbnb-amenities>
                     </div>
                 </div>
+            </div>
+            <div class="contents">
                 <div class="search">
                     <button id="btn-menu-search" type="submit">Search &raquo;</button>
                 </div>
