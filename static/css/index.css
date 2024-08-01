@@ -167,11 +167,15 @@ hbnb-search-form .contents > .destination > .title, hbnb-search-form .contents .
 hbnb-search-form .contents > .destination > .choice, hbnb-search-form .contents .amenities > .choice {
   font-size: 1.6rem;
 }
+hbnb-search-form .contents > .destination > .choice img, hbnb-search-form .contents .amenities > .choice img {
+  height: 100px;
+  width: 100px;
+}
 hbnb-search-form .contents > .destination {
   flex: 7;
   background-color: #3E2411;
   border-radius: 70px;
-  height: 150px;
+  height: 200px;
   align-content: center;
 }
 hbnb-search-form .contents > .amenities {
@@ -180,7 +184,7 @@ hbnb-search-form .contents > .amenities {
   align-content: center;
   background-color: #855F43;
   border-radius: 70px;
-  height: 100px;
+  height: 200px;
 }
 hbnb-search-form .contents > .amenities .title > .text {
   flex: 1;

@@ -201,6 +201,11 @@ hbnb-search-form {
     
             > .choice {
                 font-size: 1.6rem;
+                
+                img {
+                    height: 100px;
+                    width: 100px;
+                }
             }
         }
 
@@ -208,7 +213,7 @@ hbnb-search-form {
             flex: 7;
             background-color: #3E2411;
             border-radius: 70px;
-            height: 150px;
+            height: 200px;
             align-content: center;
         }
     
@@ -218,7 +223,7 @@ hbnb-search-form {
             align-content: center;
             background-color: #855F43;
             border-radius: 70px;
-            height: 100px;
+            height: 200px;
 
             .title {
 
