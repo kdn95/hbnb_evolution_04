@@ -174,7 +174,7 @@ hbnb-search-form {
 
     .none {
         width: 100%;
-        padding: 40px 0;
+        padding: 100px 0 0;
         text-align: center;
         color: #FBFBFB;
         font-size: 17px;
@@ -188,6 +188,7 @@ hbnb-search-form {
         text-align: center;
         position: relative;
         color: #FBFBFB;
+        padding: 30px;
         
 
         // Shared styles between the destination and amenities menu sections
@@ -215,16 +216,16 @@ hbnb-search-form {
             border-radius: 70px;
             height: 200px;
             align-content: center;
-            display: inline-table;
+            padding: 30px
         }
     
         > .amenities {
-            margin-left: 20px;
             flex: 4;
             align-content: center;
             background-color: #855F43;
             border-radius: 70px;
             height: 200px;
+            padding: 20px;
 
             .title {
 
