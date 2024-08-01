@@ -43,7 +43,9 @@ export class HbnbSearchForm extends HTMLElement {
             </div>
             <div class="contents">
                 <div class="search">
-                    <button id="btn-menu-search" type="submit">Search &raquo;</button>
+                    <button id="btn-menu-search" type="submit">Search
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
                 </div>
             </div>
         `;
