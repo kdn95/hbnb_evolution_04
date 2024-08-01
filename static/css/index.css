@@ -149,7 +149,7 @@ hbnb-search-form .section-hero .hero-title {
   font-size: 60px;
   font-weight: 550;
   display: flex;
-  margin: 10px 50px 20px 100px;
+  margin: 300px 900px 0 100px;
 }
 hbnb-search-form .section-hero .hero-inner {
   position: relative;
@@ -163,6 +163,7 @@ hbnb-search-form .section-hero .hero-para {
   font-size: 25px;
   font-weight: 300;
   line-height: 40px;
+  margin: 30px 1000px 0 100px;
 }
 hbnb-search-form .section-hero .hero-outer {
   position: relative;

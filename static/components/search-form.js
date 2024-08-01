@@ -22,12 +22,8 @@ export class HbnbSearchForm extends HTMLElement {
         // --- HTML ---
         this.innerHTML = `
             <section class="section-hero">
-                <section class="hero-inner">
-                    <h2 class="hero-title">Book the best hotel for your perfect getaway</h2>
-                </section>
-                <section class="hero-outer">
-                    <h6 class="hero-para">Welcome to the HBnB accommodation booking site. Explore and book accommodation in a variety of different locations. Find your perfect stay with our amenity filters - It’s that easy!</h6>
-                </section>
+                <h2 class="hero-title">Book the best hotel for your perfect getaway</h2>
+                <h6 class="hero-para">Welcome to the HBnB accommodation booking site. Explore and book accommodation in a variety of different locations. Find your perfect stay with our amenity filters - It's that easy!</h6>
             </section>
             <div class="none">
                 <h1>Start searching!</h1>
