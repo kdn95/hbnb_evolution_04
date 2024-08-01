@@ -73,7 +73,6 @@ hbnb-admin-header {
 
 hbnb-header {
     width: 100%;
-    border-bottom: 2px solid #C5C5FF;
     padding: 10px;
     display: flex;
     box-sizing: border-box;
@@ -86,22 +85,31 @@ hbnb-header {
             background-image: url("../img/logo_bnb.png");
             background-size: cover;
             background-repeat: no-repeat;
-            position: relative;
+            display: flex;
+            margin: 10px 50px 20px 100px;
           }
+        
+        a {
+            color: #FBFBFB;
+            text-decoration-line: none;
+    
+            &:hover {
+                color: #808691;
+            }
+        }
 
         .navbar-menu {
-            display: flex;
             justify-content: flex-end;
             align-items: center;
-            position: relative;
-            left: 500px;
+            position: absolute;
+            right: 0;
             color: #FBFBFB;
         
             .nav {
                 list-style-type: none;
                 display: flex;
-                padding: 0;
-                margin: 0;
+                padding: 5px;
+                margin: 20px 70px 30px 100px;
                 font-family: inter;
                 font-size: 25px;
                 color: #FBFBFB;
@@ -162,7 +170,6 @@ hbnb-header {
 
 hbnb-search-form {
     width: 100%;
-    background: linear-gradient(90deg,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.2) 20%, rgba(0,0,0,0.2) 80%, rgba(0,0,0,0) 100%);
     display: block;
 
     .none {
@@ -187,7 +194,6 @@ hbnb-search-form {
         > .destination, .amenities {
             > .title {
                 font-size: 2.2rem;
-                border-bottom: 1px solid #999;
                 margin-bottom: 10px;
                 padding-top: 5px;
                 text-align: center;
@@ -200,12 +206,19 @@ hbnb-search-form {
 
         > .destination {
             flex: 7;
+            background-color: #3E2411;
+            border-radius: 70px;
+            height: 150px;
+            align-content: center;
         }
     
         > .amenities {
             margin-left: 20px;
             flex: 4;
             align-content: center;
+            background-color: #855F43;
+            border-radius: 70px;
+            height: 100px;
 
             .title {
 
