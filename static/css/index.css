@@ -60,7 +60,7 @@ body {
   padding: 10px 0;
 }
 
-hbnb-header, hbnb-admin-header {
+hbnb-admin-header {
   width: 100%;
   border-bottom: 2px solid #C5C5FF;
   padding: 10px;
@@ -75,13 +75,20 @@ hbnb-header {
   display: flex;
   box-sizing: border-box;
 }
+hbnb-header .content .header-logo {
+  width: 224px;
+  height: 153px;
+  background-image: url("../img/logo_bnb.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+}
 hbnb-header .content .navbar-menu {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   position: relative;
-  top: -80px;
-  left: 60px;
+  left: 500px;
   color: #FBFBFB;
 }
 hbnb-header .content .navbar-menu .nav {
@@ -123,30 +130,6 @@ hbnb-header ul.row {
   margin: 0;
   padding: 0;
   list-style: none;
-}
-hbnb-header .status {
-  background-color: #F5F5F5;
-  border-radius: 5px;
-  padding: 5px;
-  border: 1px solid #CCC;
-  display: flex;
-  align-items: center;
-}
-hbnb-header .status > .txt {
-  padding: 0 5px;
-  font-size: 1.4rem;
-}
-hbnb-header .status > .bubble {
-  width: 30px;
-  height: 30px;
-  border-radius: 20px;
-  display: block;
-}
-hbnb-header .status > .bubble.ok {
-  background-color: green;
-}
-hbnb-header .status > .bubble.down {
-  background-color: red;
 }
 
 hbnb-search-form {

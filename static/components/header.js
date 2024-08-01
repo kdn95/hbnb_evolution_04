@@ -11,6 +11,8 @@ export class HbnbHeader extends HTMLElement {
         this.innerHTML = `
             <div class="content">
                 <div class="header-logo"></div>
+            </div>
+            <div class="content">
                 <nav class="navbar-menu">
                     <ul class="nav">
                         <li class="nav-item">
@@ -27,9 +29,6 @@ export class HbnbHeader extends HTMLElement {
                         </li>
                     </ul>
                 </nav>
-            </div>
-            <div class="status">
-                <a href="/admin">Admin area</a>
             </div>
         `;
     }
