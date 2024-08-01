@@ -172,6 +172,41 @@ hbnb-search-form {
     width: 100%;
     display: block;
 
+    .section-hero {
+
+        .hero-title {
+            margin-top: 5rem;
+            color: #FBFBFB;
+            font-family: inter;
+            font-size: 60px;
+            font-weight: 550;
+            display: flex;
+            margin: 10px 50px 20px 100px;
+        }
+    
+        .hero-inner {
+            position: relative;
+            top: 200px;
+            left: 355px;
+            width: 400px;
+        }
+        
+        .hero-para {
+            color: #FBFBFB;
+            font-family: inter;
+            font-size: 25px;
+            font-weight: 300;
+            line-height: 40px;
+        }
+    
+        .hero-outer {
+            position: relative;
+            top: 500px;
+            left: 355px;
+            width: 470px;
+        }
+    }
+
     .none {
         width: 100%;
         padding: 100px 0 0;
