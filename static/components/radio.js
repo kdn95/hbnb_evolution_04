@@ -13,7 +13,7 @@ export class HbnbRadio extends HTMLElement {
         this.innerHTML = `
             <label>
                 <input type="radio" name="` + name + `" value="` + value + `" ` + checked + ` />
-                <label for="radio"><img src="../static/img/Singapore.png"></label>
+                <label for="radio"><img src="../static/img/` + label + `.png"></label>
                 <span>` + label + `</span>
             </label>
         `;
