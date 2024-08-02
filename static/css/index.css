@@ -62,7 +62,6 @@ body {
 
 hbnb-admin-header {
   width: 100%;
-  border-bottom: 2px solid #C5C5FF;
   padding: 10px;
   display: flex;
   box-sizing: border-box;
@@ -73,7 +72,51 @@ hbnb-admin-header .admin-content {
 hbnb-admin-header .admin-content .admin-title {
   font-size: 36px;
   font-weight: 700;
-  font-style: italic;
+}
+hbnb-admin-header .admin-content .admin-title h1 {
+  text-align: center;
+  color: white;
+  text-transform: uppercase;
+  padding: 1px;
+  font-family: "inter", cursive;
+  font-weight: 200;
+  position: relative;
+  width: 100%;
+  background: linear-gradient(to right, black, #eee, black);
+  white-space: nowrap;
+}
+hbnb-admin-header .admin-content .admin-title h1::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -50px;
+  width: 600px;
+  margin-left: -300px;
+  margin-top: -220px;
+  height: 600px;
+  z-index: -1;
+}
+hbnb-admin-header .admin-content .admin-title h1 a {
+  background: black;
+  display: block;
+  padding: 20px;
+  text-decoration: none;
+  letter-spacing: 30px;
+  color: white;
+  animation: comein 1.5s 1 ease-in-out forwards;
+}
+@keyframes comein {
+  0% {
+    letter-spacing: 80px;
+    color: rgba(255, 255, 255, 0);
+  }
+  70% {
+    letter-spacing: 20px;
+  }
+  100% {
+    letter-spacing: 25px;
+    color: rgb(255, 255, 255);
+  }
 }
 hbnb-admin-header .admin-content .subtitle {
   font-size: 24px;

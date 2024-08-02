@@ -8,7 +8,9 @@ export class HbnbAdminHeader extends HTMLElement {
         // const shadow = this.attachShadow({ mode: "closed" });
         this.innerHTML = `
             <div class="admin-content">
-                <div class="admin-title">Admin Page</div>
+                <div class="admin-title">
+                    <h1><a href="#0">Admin Page</a></h1>
+                </div>
             </div>
         `;
     }
