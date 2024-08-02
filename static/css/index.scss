@@ -86,7 +86,7 @@ hbnb-header {
             background-size: cover;
             background-repeat: no-repeat;
             display: flex;
-            margin: 10px 50px 20px 100px;
+            margin: 1.25vh 3.47vw 2.5vh 6.94vw;
           }
         
         a {
@@ -168,12 +168,9 @@ hbnb-header {
 
 }
 
-hbnb-search-form {
-    width: 100%;
-    display: block;
 
+hbnb-hero {
     .section-hero {
-
         .hero-title {
             margin-top: 5rem;
             color: #FBFBFB;
@@ -181,14 +178,14 @@ hbnb-search-form {
             font-size: 60px;
             font-weight: 550;
             display: flex;
-            margin: 10px 50px 20px 100px;
+            margin: 37.5vh 62.5vw 0 6.94vw;
         }
-    
+
         .hero-inner {
             position: relative;
-            top: 200px;
-            left: 355px;
-            width: 400px;
+            top: 15vh;
+            left: 10vw;
+            width: 60vw;
         }
         
         .hero-para {
@@ -197,15 +194,21 @@ hbnb-search-form {
             font-size: 25px;
             font-weight: 300;
             line-height: 40px;
+            margin: 3.75vh 69.44vw 0 6.94vw;
         }
-    
+
         .hero-outer {
             position: relative;
-            top: 500px;
-            left: 355px;
-            width: 470px;
+            top: 20vh;
+            left: 10vw;
+            width: 40vw;
         }
     }
+}
+
+hbnb-search-form {
+    width: 100%;
+    display: block;
 
     .none {
         width: 100%;

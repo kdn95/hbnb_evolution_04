@@ -81,7 +81,7 @@ hbnb-header .content .header-logo {
   background-size: cover;
   background-repeat: no-repeat;
   display: flex;
-  margin: 10px 50px 20px 100px;
+  margin: 1.25vh 3.47vw 2.5vh 6.94vw;
 }
 hbnb-header .content a {
   color: #FBFBFB;
@@ -138,37 +138,39 @@ hbnb-header ul.row {
   list-style: none;
 }
 
-hbnb-search-form {
-  width: 100%;
-  display: block;
-}
-hbnb-search-form .section-hero .hero-title {
+hbnb-hero .section-hero .hero-title {
   margin-top: 5rem;
   color: #FBFBFB;
   font-family: inter;
   font-size: 60px;
   font-weight: 550;
   display: flex;
-  margin: 10px 50px 20px 100px;
+  margin: 37.5vh 62.5vw 0 6.94vw;
 }
-hbnb-search-form .section-hero .hero-inner {
+hbnb-hero .section-hero .hero-inner {
   position: relative;
-  top: 200px;
-  left: 355px;
-  width: 400px;
+  top: 15vh;
+  left: 10vw;
+  width: 60vw;
 }
-hbnb-search-form .section-hero .hero-para {
+hbnb-hero .section-hero .hero-para {
   color: #FBFBFB;
   font-family: inter;
   font-size: 25px;
   font-weight: 300;
   line-height: 40px;
+  margin: 3.75vh 69.44vw 0 6.94vw;
 }
-hbnb-search-form .section-hero .hero-outer {
+hbnb-hero .section-hero .hero-outer {
   position: relative;
-  top: 500px;
-  left: 355px;
-  width: 470px;
+  top: 20vh;
+  left: 10vw;
+  width: 40vw;
+}
+
+hbnb-search-form {
+  width: 100%;
+  display: block;
 }
 hbnb-search-form .none {
   width: 100%;
